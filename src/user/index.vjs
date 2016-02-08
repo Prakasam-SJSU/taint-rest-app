@@ -1,0 +1,43 @@
+"use strict";
+
+var mysql = require('mysql');
+
+function search(req, res) {
+    query(req.query.lastname, function(err, rows) {
+        console.log('err: %s,  rows:%s : ', JSON.stringify(err), JSON.stringify(rows));
+
+        if (err) {
+            return  res.send(JSON.stringify(err));
+        }
+
+        res.send(JSON.stringify((rows)));
+    });
+}
+
+function query(lastname, callback) {
+    var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'webappuser',
+        password : 'WSXwer43@',
+        database : 'test',
+        multipleStatements: true
+    });
+
+    var searchSQL = "select * from student where lastname = '" + lastname + "';";
+
+    connection.connect();
+
+    connection.query(searchSQL, function(err, rows, fields) {
+        if (err) {
+            return callback(err, null);
+        }
+
+        callback(null, rows);
+    });
+
+    connection.end();
+}
+
+module.exports = search;
+
+//Appleseed';select * from student where lastname <> '

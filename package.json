@@ -1,0 +1,16 @@
+{
+  "name": "taintweb",
+  "version": "1.0.0",
+  "description": "Web App to Demonstrate Taint Detection",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "pkannan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "harmony-reflect": "^1.4.2",
+    "mysql": "^2.9.0"
+  }
+}
